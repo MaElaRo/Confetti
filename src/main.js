@@ -10,48 +10,38 @@ function setup() {
   canvas.parent("canvas-center");
   background(148, 186, 209);
 
-  foodArr = Array.from({ length: 10 }).map(() => new Food());
+  foodArr = Array.from({ length: 30 }).map(() => new Food());
 
   snakeObj = new Snake();
-  frameRate(15);
-  foodObj = new Food();
+  frameRate(30);
 }
 
 function draw() {
   clear();
   background(148, 186, 209);
+
+  for (let i = 0; i <= WIDTH; i += WIDTH / 20) {
+    stroke("black");
+    line(0, i, 600, i);
+    line(i, 0, i, 600);
+  }
   snakeObj.draw();
 
-  foodArr.forEach(element => {
+  foodArr.forEach((element, i) => {
     element.draw();
+    if (element.checkCollision()) {
+      foodArr.splice(i, 1);
+    }
   });
-
-  if (snakeObj.position === "N") snakeObj.y -= 15;
-  if (snakeObj.position === "S") snakeObj.y += 15;
-  if (snakeObj.position === "E") snakeObj.x += 15;
-  if (snakeObj.position === "W") snakeObj.x -= 15;
-  //foodObj.move();
-
-  if (snakeObj.y <= 0) snakeObj.y = 15;
-  if (snakeObj.y >= 600) snakeObj.y = 585;
-  if (snakeObj.x >= 600) snakeObj.x = 585;
-  if (snakeObj.x <= 0) snakeObj.x = 15;
 }
 
-function keyPressed() {
-  if (keyCode === UP_ARROW) {
-    snakeObj.position = "N";
-  }
-  if (keyCode === DOWN_ARROW) {
-    snakeObj.position = "S";
-  }
-  if (keyCode === RIGHT_ARROW) {
-    snakeObj.position = "E";
-  }
-  if (keyCode === LEFT_ARROW) {
-    snakeObj.position = "W";
-  }
-  /*function eat (){
-    if (snakeObj.)
-  }*/
-}
+window.addEventListener(
+  "keydown",
+  function(e) {
+    // space and arrow keys
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+      e.preventDefault();
+    }
+  },
+  false
+);
