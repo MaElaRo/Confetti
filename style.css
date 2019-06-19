@@ -12,3 +12,15 @@ h1 {
   color: rgb(209, 129, 146);
   font-weight: 100;
 }
+
+.btn {
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Courier New;
+  color: #f0edf0;
+  font-size: 20px;
+  background: #94bad1;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}

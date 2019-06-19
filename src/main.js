@@ -4,24 +4,34 @@ const HEIGHT = WIDTH;
 let canvas;
 let foodObj;
 let foodArr;
-
+let gameScore = 0;
+let rate = 4;
 function setup() {
-  let canvas = createCanvas(WIDTH, HEIGHT);
+  canvas = createCanvas(WIDTH, HEIGHT);
   canvas.parent("canvas-center");
   background(148, 186, 209);
 
-  foodArr = Array.from({ length: 30 }).map(() => new Food());
-
+  foodArr = Array.from({ length: 25 }).map(() => new Food(true));
+  for (let i = 0; i < 5; i++) {
+    foodArr.push(new Food(false));
+  }
+  /*  foodArr.forEach(food=>food.setup()) */
+  foodArr.forEach(function(food) {
+    food.setup();
+  });
   snakeObj = new Snake();
-  frameRate(30);
 }
 
 function draw() {
+  frameRate(rate);
   clear();
   background(148, 186, 209);
+  fill("black");
+  document.getElementById("points").innerText = `Points:  ${gameScore}`;
 
   for (let i = 0; i <= WIDTH; i += WIDTH / 20) {
-    stroke("black");
+    stroke(148, 186, 209);
+    //stroke("black");
     line(0, i, 600, i);
     line(i, 0, i, 600);
   }

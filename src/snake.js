@@ -4,6 +4,7 @@ class Snake {
     this.row = 0;
     this.body = [];
     this.position = "";
+    this.speed = 1;
   }
 
   draw() {
@@ -12,16 +13,27 @@ class Snake {
     ellipse(this.col * 30 + 15, this.row * 30 + 15, 30, 30);
     pop();
 
-    if (this.position === "N") this.row -= 1;
-    if (this.position === "S") this.row += 1;
-    if (this.position === "E") this.col += 1;
-    if (this.position === "W") this.col -= 1;
-    //foodObj.move();
+    if (this.position === "N") this.row -= this.speed;
+    if (this.position === "S") this.row += this.speed;
+    if (this.position === "E") this.col += this.speed;
+    if (this.position === "W") this.col -= this.speed;
 
-    if (this.row <= 0) this.row = 0;
-    if (this.row >= 19) this.row = 19;
-    if (this.col >= 19) this.col = 19;
-    if (this.col <= 0) this.col = 0;
+    if (this.row > 19) {
+      noLoop();
+      print("Game Over");
+    }
+    if (this.col > 19) {
+      noLoop();
+      print("Game Over");
+    }
+    if (this.col < 0) {
+      noLoop();
+      print("Game Over");
+    }
+    if (this.row < 0) {
+      noLoop();
+      print("Game Over");
+    }
 
     if (keyCode === UP_ARROW) {
       this.position = "N";
