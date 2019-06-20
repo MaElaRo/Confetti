@@ -6,13 +6,14 @@ let foodObj;
 let foodArr;
 let gameScore = 0;
 let rate = 4;
+
 function setup() {
   canvas = createCanvas(WIDTH, HEIGHT);
   canvas.parent("canvas-center");
   background(148, 186, 209);
 
   foodArr = Array.from({ length: 25 }).map(() => new Food(true));
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 10; i++) {
     foodArr.push(new Food(false));
   }
   /*  foodArr.forEach(food=>food.setup()) */
@@ -20,6 +21,9 @@ function setup() {
     food.setup();
   });
   snakeObj = new Snake();
+  mySound = loadSound("assets/NFF-steal-02.wav");
+  myDeathSound = loadSound("assets/NFF-shut-down.wav");
+  myPointSound = loadSound("assets/NFF-coin-04.wav");
 }
 
 function draw() {
@@ -35,7 +39,7 @@ function draw() {
     line(0, i, 600, i);
     line(i, 0, i, 600);
   }
-  snakeObj.draw();
+  //snakeObj.draw();
 
   foodArr.forEach((element, i) => {
     element.draw();
@@ -43,6 +47,7 @@ function draw() {
       foodArr.splice(i, 1);
     }
   });
+  snakeObj.draw();
 }
 
 window.addEventListener(

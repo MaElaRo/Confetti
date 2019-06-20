@@ -12,6 +12,9 @@ h1 {
   color: rgb(209, 129, 146);
   font-weight: 100;
 }
+#points {
+  color: rgb(209, 129, 146);
+}
 
 .btn {
   -webkit-border-radius: 28;

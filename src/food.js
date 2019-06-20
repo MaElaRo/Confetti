@@ -1,5 +1,6 @@
 let randomColor;
-
+let mySound;
+let myPointSound;
 class Food {
   constructor(standard) {
     this.col = Math.round(random(0, 19));
@@ -8,17 +9,8 @@ class Food {
     this.randIndex = Math.floor(random(0, this.colorArray.length));
     this.isStandard = standard;
   }
-  setup() {
-    /*  this.color = (154, 201, 184);
-    this.color1 = (184, 154, 201);
-    this.color2 = (189, 73, 98);
-    fill(random(this.color1, this.color2, this.color)); */
-    // randomColor = color(
-    //   random(154, 201, 184),
-    //   random(184, 154, 201),
-    //   random(189, 73, 98)
-    // );
-  }
+
+  setup() {}
   draw() {
     //fill(random(this.color));
     push();
@@ -35,9 +27,18 @@ class Food {
     if (d == 0) {
       // if(this.color == red) rate -5
       if (this.isStandard === true) {
+        myPointSound.play();
         gameScore += 1;
-        console.log(gameScore);
+        if (gameScore === 25) {
+          textSize(30);
+          fill(209, 129, 146);
+          textAlign(CENTER, CENTER);
+          text("You won", WIDTH / 2, HEIGHT / 2);
+          noLoop();
+        }
+        //console.log(gameScore);
       } else if (this.isStandard === false) {
+        mySound.play();
         rate += 2;
       }
       return true;

@@ -1,8 +1,8 @@
+let myDeathSound;
 class Snake {
   constructor() {
     this.col = 0;
     this.row = 0;
-    this.body = [];
     this.position = "";
     this.speed = 1;
   }
@@ -20,19 +20,35 @@ class Snake {
 
     if (this.row > 19) {
       noLoop();
-      print("Game Over");
+      textSize(30);
+      fill(209, 129, 146);
+      textAlign(CENTER, CENTER);
+      text("Game Over", WIDTH / 2, HEIGHT / 2);
+      myDeathSound.play();
     }
     if (this.col > 19) {
       noLoop();
-      print("Game Over");
+      textSize(30);
+      fill(209, 129, 146);
+      textAlign(CENTER, CENTER);
+      text("Game Over", WIDTH / 2, HEIGHT / 2);
+      myDeathSound.play();
     }
     if (this.col < 0) {
       noLoop();
-      print("Game Over");
+      textSize(30);
+      fill(209, 129, 146);
+      textAlign(CENTER, CENTER);
+      text("Game Over", WIDTH / 2, HEIGHT / 2);
+      myDeathSound.play();
     }
     if (this.row < 0) {
       noLoop();
-      print("Game Over");
+      textSize(30);
+      fill(209, 129, 146);
+      textAlign(CENTER, CENTER);
+      text("Game Over", WIDTH / 2, HEIGHT / 2);
+      myDeathSound.play();
     }
 
     if (keyCode === UP_ARROW) {
